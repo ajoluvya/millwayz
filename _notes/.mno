@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="MM_Form1" value="username" />
+	<infoitem key="MM_Form_Count" value="1" />
+	<infoitem key="PageAccessControlMethod" value="useAccessList" />
+	<infoitem key="MM_Session1" value="unames" />
+	<infoitem key="MM_Session_Count" value="5" />
+	<infoitem key="MM_Session2" value="MM_Username" />
+	<infoitem key="MM_Session3" value="MM_UserGroup" />
+	<infoitem key="PageAccessControl" value="admin,Supervisor" />
+	<infoitem key="MM_URL1" value="loginMsg" />
+	<infoitem key="MM_URL_Count" value="2" />
+	<infoitem key="MM_URL2" value="clientAddMsg" />
+	<infoitem key="MM_Session4" value="millID" />
+	<infoitem key="MM_Session5" value="staff_id" />
+</info>

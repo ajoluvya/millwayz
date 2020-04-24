@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* ######################## */
+/* General HTML Tag Rules   */
+/* ######################## */
+body{
+	text-align:center;
+	background-image:url(../imgs/bg_body.jpg);
+	background-repeat: repeat-x;
+	background-color:#e4e4e4;
+	background-attachment:fixed;
+	background-position:top;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333;
+	margin:0;
+	padding:0 0 25px 0;	
+}
+#h1{
+	font-size:24px;
+	color:#FFF;
+	font-weight:bold;
+	text-transform:uppercase;
+	position:absolute;
+	top:35px;
+	left:0px;	
+}
+
+p{
+
+}
+
+a{
+	text-decoration: none;
+	color: #035B01;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+hr{
+	
+}
+
+/* ##############################*/
+/* General Template class rules */
+/* ############################*/
+
+.wrapOverall{
+	margin:0px auto;
+	
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
+.header{
+	/*background-image:url(../imgs/bg_img_blue.png);*/
+	background-repeat:non;
+	background-position:top center;
+	height:134px;
+	background-color:#0061C1;
+}
+
+.navMain{
+	margin: 70px 20px 20px 0px;
+	float: right;
+	display: block;
+	
+}
+
+.content{
+	margin:0px auto;
+	width:85%;
+	padding:10px;
+	background-color:#EEE;
+}
+.footer{	/*background-image:url(../imgs/bg_footer.png);*/
+	background-repeat:non;
+	background-position:top center;
+	text-align:center;
+	color: #4b2;
+	text-decoration:underline;
+	font-weight:bold;
+	font:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	text-transform:uppercase;
+	padding:20px;
+	margin:opx auto;
+background-color:#0061C1;
+height:2px;
+
+	
+}
+
+/* ##############################*/
+/* General Navigation rules     */
+/* ############################*/
+
+.navMain ul{
+	margin:0px;
+	padding:0px;
+	
+}
+.navMain ul li{
+		margin:0px;
+		padding:0px 10px;
+		list-style:none;
+		float:left;
+		
+}
+.navMain ul li a{
+		margin:0px;
+		padding:0px;
+		color:#FFF;
+		text-decoration:none;
+		font-weight:normal;
+		font-size:20px;
+		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+		text-transform:uppercase;
+}		
+	
+.navMain ul li a:link,nav ul li a:visited{
+	display: block;
+	height: 30px;
+	width: 80px;
+	line-height: 30px;
+	text-align: center;
+	
+	}		
+		
+	.navMain ul li a:focus,nav ul li a:hover,nav ul li a:active{
+	background-color: #3D9D11;
+	
+	}			
+	
+
+.header img.logo{
+	float:left;
+	margin:50px 0px 25px 0px;
+	
+ }
+.navMain ul li a:hover{
+	text-decoration:underline;
+}
+
+/* ##############################*/
+/* General table rules         */
+/* ############################*/
+table{
+	margin:0px 0px 10px 0px;
+	}
+.tbl_view {
+	width:100%
+}
+
+.tbl_capture th, .tbl_view td, .tbl_view th{
+	text-align:left;
+	vertical-align:top;
+	padding:2px 10px
+	}
+.tbl_view th{
+	background-color:#CCC;
+}
+
+.tbl_view td{
+	border-bottom:dashed 1px #F5F5F5;
+	}
+.tbl_view tr:hoover{
+	background-color:#f1f1f1;
+}
+.frm_fld{
+	border:solid 1px #F5F5F5;
+	width:300px;
+}
+#clientNames {
+	font-size: 12px;
+	color: #F33;
+}

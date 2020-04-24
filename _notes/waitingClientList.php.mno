@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsClientWaitList" value="name:saleID;datatype:int,name:clientNo;datatype:int,name:salesDate;datatype:date,name:NAMES;datatype:string,name:occupation;datatype:string" />
+</info>

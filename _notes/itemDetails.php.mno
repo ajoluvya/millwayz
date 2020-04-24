@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsDiscount" value="name:rate;datatype:int,name:st_weigth;datatype:int,name:end_weigth;datatype:int,name:discountID;datatype:int" />
+	<infoitem key="UD_rsItem" value="name:itemName;datatype:string,name:charge;datatype:int" />
+</info>

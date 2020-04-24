@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* ######################## */
+/* General HTML Tag Rules   */
+/* ######################## */
+body{
+}
+
+.header .content .footer{	
+	background-color:#fff;
+}
+
+.navMain{
+	display:none;	
+}/**/
+
+/* ##############################*/
+/* General Navigation rules     */
+/* ############################*/
+
+/**/
+.header img.logo{
+	float:left;
+ }

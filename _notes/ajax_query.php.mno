@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsClient" value="name:fname;datatype:string,name:lname;datatype:string,name:phoneNo;datatype:string" />
+	<infoitem key="UD_rsStWeight" value="name:st_weigth;datatype:int" />
+	<infoitem key="UD_rsEWeight" value="name:end_weigth;datatype:int" />
+</info>

@@ -1,0 +1,135 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* ######################## */
+/* General HTML Tag Rules   */
+/* ######################## */
+body{
+	background-image:url(../imgs/bg_body.jpg);
+	background-repeat: repeat-x;
+	background-color:#e4e4e4;
+	background-attachment:fixed;
+	background-position:top;
+	margin:0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	
+}
+
+p{
+
+}
+
+a{
+
+}
+
+a:hover{
+	
+}
+
+hr{
+	
+}
+
+/* ##############################*/
+/* General Template class rules */
+/* ############################*/
+
+.wrapOverall{
+	margin:0px auto;
+}
+
+.header{
+	background-image:url(../imgs/bg_img_blue.png);
+	background-repeat:non;
+	background-position:top center;
+	height:134px;
+	background-color:#0061C1;
+	
+	
+}
+.content{
+	margin:0px auto;
+	width:766px;
+	background-color:#EEE;
+}
+
+/* ##############################*/
+/* General Navigation rules     */
+/* ############################*/
+
+.navMain{
+	margin: 70px 20px 20px 0px;
+	float: right;
+	display: block;
+	
+}
+
+.navMain ul{
+	margin:0px;
+	padding:0px;
+	
+}
+.navMain ul li{
+		margin:0px;
+		padding:0px 10px;
+		list-style:none;
+		float:left;
+		
+}
+.navMain ul li a{
+		margin:0px;
+		padding:0px;
+		color:#FFF;
+		text-decoration:none;
+		font-weight:normal;
+		font-size:20px;
+		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+		text-transform:uppercase;
+}		
+	
+.navMain ul li a:link,nav ul li a:visited{
+	display: block;
+	height: 30px;
+	width: 60px;
+	line-height: 30px;
+	text-align: center;
+	
+	}		
+		
+	.navMain ul li a:focus,nav ul li a:hover,nav ul li a:active{
+	background-color: #3D9D11;
+	
+	}			
+	
+.navMain ul li a:hover{
+	text-decoration:underline;
+	
+}
+
+.header img.logo{
+	float:left;
+	margin:50px 0px 25px 0px;
+	
+ }
+
+.footer{	/*background-image:url(../imgs/bg_footer.png);*/
+	background-repeat:non;
+	background-position:top center;
+	text-align:center;
+	color: #060;
+	text-decoration:underline;
+	font-weight:bold;
+	font:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	text-transform:uppercase;
+	padding:20px;
+	margin:opx auto;
+	background-color:#0061C1;
+	height:2px;
+}
+/* ##############################*/
+/* General button rules         */
+/* ############################*/
