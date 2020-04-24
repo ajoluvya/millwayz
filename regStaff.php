@@ -119,7 +119,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css" />
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>

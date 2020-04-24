@@ -124,18 +124,11 @@ $totalRows_rsClients = mysql_num_rows($rsClients);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Millwayz | Clients</title>
+<title>Millwayz::..Clients</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
-<script type="text/javascript">
-function confirmdel(){
-				  var really=confirm("Are you sure you really want to delete this client?");
-				  return really;
-		}
-</script>
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -163,38 +156,10 @@ function confirmdel(){
   <?php } // Show if recordset empty ?>
 <p><a href="regClient.php">Reg new client</a></p>
 <?php if ($totalRows_rsClients > 0) { // Show if recordset not empty ?>
-
   <p><?php echo $totalRows_rsClients ?> total records. Displaying:&nbsp;<?php echo ($startRow_rsClients + 1) ?> - <?php echo min($startRow_rsClients + $maxRows_rsClients, $totalRows_rsClients) ?></p>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["table"]});
-      google.setOnLoadCallback(drawTable);
-
-      function drawTable() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('number', 'CLIENTNO');
-        data.addColumn('string', 'NAMES');
-        data.addColumn('string', 'MILL');
-        data.addColumn('string', 'ADDRESS1');
-        data.addColumn('string', 'ADDRESS2');
-        data.addColumn('string', 'PHONE NO');
-        data.addColumn('string', 'OCCUPATION');
-        data.addColumn('string', 'TRANSACTION HISTORY');
-        data.addColumn('string', 'Edit');
-        data.addRows([
-      <?php do { ?>
-          [{v: <?php echo $row_rsClients['client_ID']; ?>}, '<?php echo $row_rsClients['fname']; ?> <?php echo $row_rsClients['lname']; ?>','<?php echo $row_rsClients['millName']; ?>','<?php echo $row_rsClients['address1']; ?>','<?php echo $row_rsClients['address2']; ?>','<?php echo $row_rsClients['phoneNo']; ?>','<?php echo $row_rsClients['occupation']; ?>','<a href="client_profile.php?clientID=<?php echo $row_rsClients['client_ID']; ?>">Purchases</a>','<a href="editClient.php?clientID=<?php echo $row_rsClients['client_ID']; ?>">Edit</a> | <a href="delete.php?clientID=<?php echo $row_rsClients['client_ID']; ?>" onclick="return confirmdel()">Delete</a>'],
-          <?php } while ($row_rsClients = mysql_fetch_assoc($rsClients)); ?>
-        ]);
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data, {showRowNumber: true, allowHtml: true, page:'enable'});
-      }
-    </script>
-    <div id="table_div"></div>
-  <!-- table width="0" border="0" cellspacing="0" class="tbl_view">
+  <table width="0" border="0" cellspacing="0" id="tbl_view">
     <tr>
+      <th scope="col">S/N</th>
       <th scope="col">CLIENTNO</th>
       <th scope="col">NAMES</th>
       <th scope="col">MILL</th>
@@ -205,8 +170,9 @@ function confirmdel(){
       <th scope="col">&nbsp;</th>
       <th scope="col">Edit</th>
     </tr>
-      <?php /* do { ?>
-    <tr -->
+    <tr>
+      <?php do { ?>
+        <td>&nbsp;</td>
         <td><?php echo $row_rsClients['client_ID']; ?></td>
         <td><?php echo $row_rsClients['fname']; ?> <?php echo $row_rsClients['lname']; ?></td>
         <td><?php echo $row_rsClients['millName']; ?></td>
@@ -215,13 +181,13 @@ function confirmdel(){
         <td><?php echo $row_rsClients['phoneNo']; ?></td>
         <td><?php echo $row_rsClients['occupation']; ?></td>
         <td>Purchases</td>
-        <td><a href="editClient.php?clientID=<?php echo $row_rsClients['client_ID']; ?>">Edit</a> | <a href="delete.php?clientID=<?php echo $row_rsClients['client_ID']; ?>" onclick="return confirmdel()">Delete</a></td>
+        <td><a href="editClient.php?clientID=<?php echo $row_rsClients['client_ID']; ?>">Edit</a> | <a href="delete.php?clientID=<?php echo $row_rsClients['client_ID']; ?>">Delete</a></td>
         <?php } while ($row_rsClients = mysql_fetch_assoc($rsClients)); ?>
     </tr>
   </table>
   <p><?php echo $totalRows_rsClients ?> total records. Displaying:&nbsp;<?php echo ($startRow_rsClients + 1) ?> - <?php echo min($startRow_rsClients + $maxRows_rsClients, $totalRows_rsClients) ?></p>
   <p>&nbsp;<a href="<?php printf("%s?pageNum_rsClients=%d%s", $currentPage, 0, $queryString_rsClients); ?>">First</a> | <a href="<?php printf("%s?pageNum_rsClients=%d%s", $currentPage, max(0, $pageNum_rsClients - 1), $queryString_rsClients); ?>">Previous</a> | <a href="<?php printf("%s?pageNum_rsClients=%d%s", $currentPage, min($totalPages_rsClients, $pageNum_rsClients + 1), $queryString_rsClients); ?>">Next</a> | <a href="<?php printf("%s?pageNum_rsClients=%d%s", $currentPage, $totalPages_rsClients, $queryString_rsClients); ?>">Last</a></p>
-  <?php*/ } // Show if recordset not empty ?>
+  <?php } // Show if recordset not empty ?>
         <!-- InstanceEndEditable --></div><!--END content-->
         
       <div class="footer">&copy;millways 2012 - 2014</div><!--END footer-->

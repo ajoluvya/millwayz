@@ -53,7 +53,7 @@ if (isset($_POST['username'])) {
   $loginFoundUser=0;
   
   mysql_select_db($database_millwayconn, $millwayconn);  //we select from the other table	
-  $LoginRS__query=sprintf("SELECT username, password, millID, fname, lname, staff_id, role FROM tbl_staff WHERE username=%s AND password=%s",
+  $LoginRS__query=sprintf("SELECT username, password, millID, fname,  lname, role FROM tbl_staff WHERE username=%s AND password=%s",
   GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
       
   $LoginRS = mysql_query($LoginRS__query, $millwayconn) or die(mysql_error());
@@ -76,7 +76,7 @@ if (isset($_POST['username'])) {
     $_SESSION['MM_UserGroup'] = $loginStrGroup;
 	$_SESSION['millID'] = mysql_result($LoginRS,0,'millID');
 	$_SESSION['staff_id'] = mysql_result($LoginRS,0,'staff_id');	
-	$_SESSION['unames'] = mysql_result($LoginRS,0,'fname');	      
+	$_SESSION['unames'] = mysql_result($LoginRS,0,'fname','lname');	      
 
     if (isset($_SESSION['PrevUrl']) && true) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	

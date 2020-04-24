@@ -1,4 +1,5 @@
 <?php require_once('Connections/millwayconn.php'); ?>
+<?php require_once('Connections/millwayconn.php'); ?>
 <?php
 if (!isset($_SESSION)) {
   session_start();
@@ -129,7 +130,6 @@ $queryString_rsStaff = sprintf("&totalRows_rsStaff=%d%s", $totalRows_rsStaff, $q
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -158,7 +158,7 @@ $queryString_rsStaff = sprintf("&totalRows_rsStaff=%d%s", $totalRows_rsStaff, $q
 <p><a href="regStaff.php">Register staff</a></p>
           <?php if ($totalRows_rsStaff > 0) { // Show if recordset not empty ?>
             <center>
-              <table width="0" border="0" cellspacing="0" class="tbl_view">
+              <table width="0" border="0" cellspacing="0" id="tbl_view">
                 <tr>
                   <th scope="col">S/N</th>
                   <th scope="col">ID</th>
@@ -203,4 +203,5 @@ $queryString_rsStaff = sprintf("&totalRows_rsStaff=%d%s", $totalRows_rsStaff, $q
 <?php
 mysql_free_result($rsStaff);
 
+mysql_free_result($rsStaff);
 ?>

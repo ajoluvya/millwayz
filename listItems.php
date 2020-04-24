@@ -87,12 +87,11 @@ $totalRows_rsItems = mysql_num_rows($rsItems);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Millwayz | Item List</title>
+<title>Millwayz::..Items List</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -114,13 +113,13 @@ $totalRows_rsItems = mysql_num_rows($rsItems);
         </div>
         
         <div class="content"><!-- InstanceBeginEditable name="Content" -->
-          <h1>Item list</h1>
+          <h1>Trade items</h1>
           <?php if ($totalRows_rsItems == 0) { // Show if recordset empty ?>
             <p>No records.</p>
             <?php } // Show if recordset empty ?>
 <p><a href="regItem.php">Add new item</a></p>
 <?php if ($totalRows_rsItems > 0) { // Show if recordset not empty ?>
-  <table width="0" border="0" cellspacing="0" class="tbl_view">
+  <table width="0" border="0" cellspacing="0" id="tbl_view">
     <tr>
       <th scope="col">S/N</th>
       <th scope="col">ITEM</th>

@@ -8,7 +8,6 @@
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
 <link href="../CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css"/>
 </head>
 
 <body>

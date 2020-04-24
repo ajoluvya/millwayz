@@ -3,12 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Millwayz | Dashboard |  Staff</title>
+<title>Millwayz::..Dashboard - Staff</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -38,11 +37,7 @@
               <td><a href="clients.php">Clients</a></td>
             </tr>
             <tr>
-              <td><a href="receiveCustomer.php">Receive customer</a></td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><a href="waitingClientList.php">Waiting list</a></td>
+              <td><a href="incomng_sale.php">New Sale</a></td>
               <td><a href="sales.php">Sales</a></td>
             </tr>
             <tr>

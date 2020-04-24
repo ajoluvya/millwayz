@@ -126,7 +126,6 @@ $totalRows_rsStaffDetail = mysql_num_rows($rsStaffDetail);
 <link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css" />
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -149,7 +148,6 @@ $totalRows_rsStaffDetail = mysql_num_rows($rsStaffDetail);
         
         <div class="content"><!-- InstanceBeginEditable name="Content" -->
           <h1>EDIT STAFF</h1>
-          <center>
           <form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
             <table width="0" border="0" cellspacing="0" id="tbl_capture2">
               <tr>
@@ -222,7 +220,13 @@ $totalRows_rsStaffDetail = mysql_num_rows($rsStaffDetail);
             </table>
             <input type="hidden" name="MM_update" value="form1" />
           </form>
-          </center>
+          <table width="0" border="0" cellspacing="0" id="tbl_capture">
+          <tr>            </tr>
+          <tr>            </tr>
+          <tr>            </tr>
+          <tr>            </tr>
+          <tr>            </tr>
+          </table>
           <p>&nbsp;</p>
         <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");

@@ -82,7 +82,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbl_sales (clientNo, discount, salesDate, millBranch, modifiedby) VALUES (%s, %s, CURDATE(), %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbl_sales (clientNo, discount, salesDate, millBranch, modifiedby) VALUES (%s, CURDATE(), %s, %s, %s)",
                        GetSQLValueString($_POST['clientNo'], "text"),
                        GetSQLValueString($_POST['discount'], "int"),
                        GetSQLValueString($_POST['millBranch'], "int"),
@@ -96,12 +96,11 @@ $rsSaleID = mysql_query($query_rsSaleID, $millwayconn) or die(mysql_error());
 $row_rsSaleID = mysql_fetch_assoc($rsSaleID);
 
   foreach($_POST['itemNo'] as $cnt => $itemNo) {
-	  $insertSQL = sprintf("INSERT INTO tbl_sold_item (saleID, itemNo, weight, amount, discount) VALUES (%s, %s, %s, %s, %s)",
+	  $insertSQL = sprintf("INSERT INTO tbl_sold_item (saleID, itemNo, weight, amount) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($row_rsSaleID['saleID'], "int"),
                        GetSQLValueString($itemNo, "int"),
                        GetSQLValueString($_POST['weight'][$cnt], "int"),
-                       GetSQLValueString($_POST['amount'][$cnt], "int"),
-                       GetSQLValueString($_POST['subdiscount'][$cnt], "int"));
+                       GetSQLValueString($_POST['amount'][$cnt], "int"));
 
   mysql_select_db($database_millwayconn, $millwayconn);
   $Result1 = mysql_query($insertSQL, $millwayconn) or die(mysql_error());
@@ -141,53 +140,42 @@ $(document).ready(function(){
 		$.get("ajax_query.php",{clntId:$(this).val(),origin:"frontdesk"},function(data,status){
 			$("#clientNames").html(data.slice(data.indexOf(" "),data.length));
 			if(data.charAt(0)==0){
-				//$("#itemNo").prop("selectedIndex", 0);
-				$("#itemNo").prop("disabled","disabled");
-				//$("#weight").val("");
-				$("#weight").prop("disabled","disabled");
+			$("#itemNo").prop("disabled","disabled");
+			$("#weight").prop("disabled","disabled");
 			}
 			else{
-				$("#itemNo").prop("disabled","enabled");
-				$("#weight").prop("disabled","enabled");
+			$("#itemNo").prop("disabled","enabled");
+			$("#weight").prop("disabled","enabled");
 			}
 		});
 	});
 });
 function total(){
-	var amount=0, discount=0;
+	var amount=0;
 		$.each($("#addedItems").children("input:hidden"),function(i,e) {
 			if(e.name=="amount[]")
 				amount+=parseInt(e.value);
-			if(e.name=="subdiscount[]")
-				discount+=parseInt(e.value);
         });	
 				$("#total").val(amount+parseInt($("#amount").val()));
-				//$("#discount").val(discount+parseInt($("#subdiscount").val()));
-				//$("#overaltotal").val(parseInt($("#total").val())-parseInt($("#discount").val()));
 }
 function showPrice(){
 	if($("#weight").val()!=""&&$("#itemNo").val()!=""){
 	$("#amount").val(parseInt($("#itemNo").find('option:selected').prop("id"))*parseInt($("#weight").val()));
-	if($("#clientNo").val()!="")
-	$.get("ajax_query.php",{clntId:$("#clientNo").val(),origin:"discount",tdaysweight:$("#weight").val(),itemID:$("#itemNo").val()},function(data,status){
-		$("#subdiscount").val(data);
-	});	
 	total();
 	}
 }
 	function addItem(display){
 		if($("#weight").val()!=""&&$("#amount").val()!=""&&$("#itemNo").val()!=""){
 			if(!document.getElementById("rowNum"+$("#itemNo").val())){
-				var row = '<span id="rowNum'+$("#itemNo").val()+'" onclick="showItem('+$("#itemNo").val()+');">'+$("#itemNo").find('option:selected').text()+'<input type="hidden" name="amount[]" value="'+$("#amount").val()+'"><input type="hidden" name="subdiscount[]" value="'+$("#subdiscount").val()+'"><input type="hidden" name="itemNo[]" value="'+$("#itemNo").val()+'"><input type="hidden" name="weight[]" value="'+$("#weight").val()+'"> <input type="button" value="X" title="Remove" style="font-size:9px; width:auto; padding:0;" onclick="removeItem('+$("#itemNo").val()+');"></span>';
+				var row = '<span id="rowNum'+$("#itemNo").val()+'" onclick="showItem('+$("#itemNo").val()+');">'+$("#itemNo").find('option:selected').text()+'<input type="hidden" name="amount[]" value="'+$("#amount").val()+'"><input type="hidden" name="itemNo[]" value="'+$("#itemNo").val()+'"><input type="hidden" name="weight[]" value="'+$("#weight").val()+'"> <input type="button" value="X" title="Remove" style="font-size:9px; width:auto; padding:0;" onclick="removeItem('+$("#itemNo").val()+');"></span>';
 				$('#addedItems').append(row);
 				$("#weight").val("");
 				$("#amount").val("");
-				$("#subdiscount").val("");
 				$("#itemNo").prop("selectedIndex", 0);
 			}
 			else
 			if(!display)
-			alert($("#itemNo").find('option:selected').text()+" is in your list, please consider editing existing one");			
+			alert($("#itemNo").find('option:selected').text()+" is in your list, please consider editing that one");			
 		}
 		else{
 			if(!display)
@@ -211,9 +199,6 @@ function showPrice(){
 				case "weight[]":
 				$("#weight").val(e.value);
 				break;
-				case "subdiscount[]":
-				$("#subdiscount").val(e.value);
-				break;
 			}
         });	
 		removeItem(rnum);	
@@ -223,7 +208,6 @@ function showPrice(){
 <link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css" />
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -245,7 +229,7 @@ function showPrice(){
         </div>
         
         <div class="content"><!-- InstanceBeginEditable name="Content" -->
-          <h1>Client Page</h1>
+          <h1>New Sale</h1>
           <form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
           <center>
             <table width="0" border="0" cellspacing="0" id="tbl_capture">
@@ -289,12 +273,8 @@ do {
                 <td><input name="amount[]" type="text" class="frm_fld" id="amount" readonly="readonly" /></td>
               </tr>
               <tr class="hideable">
-                <th scope="row"><label for="subdiscount">Discount:</label></th>
-                <td><input name="subdiscount[]" type="text" class="frm_fld" id="subdiscount" readonly="readonly" /></td>
-              </tr>
-              <tr class="hideable">
-                <th scope="row">Orders:</th>
-                <td id="addedItems"></td>
+                <th scope="row">&nbsp;</th>
+                <td id="addedItems">&nbsp;</td>
               </tr>
               <tr class="hideable">
                 <th scope="row">&nbsp;</th>
@@ -305,16 +285,8 @@ do {
                 <td><input name="total" type="text" class="frm_fld" id="total" readonly="readonly" /></td>
               </tr>
               <tr class="hideable">
-                <th scope="row"><label for="discount">Total discount:</label></th>
-                <td><span id="sprytextfield3">
-                <input name="discount" type="text" class="frm_fld" id="discount" readonly="readonly" />
-                <span class="textfieldRequiredMsg"><br />
-                Discount is required.</span></span></td>
-              </tr>
-              <tr class="hideable">
-                <th scope="row"><label for="overaltotal">Overall total:</label></th>
-                <td>
-                <input name="overaltotal" type="text" class="frm_fld" id="overaltotal" /></td>
+                <th scope="row"><label for="discount">Discount:</label></th>
+                <td><input name="discount" type="text" class="frm_fld" id="discount" readonly="readonly" /></td>
               </tr>
               <tr class="hideable">
                 <th scope="row">&nbsp;</th>
@@ -331,7 +303,6 @@ do {
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "integer");
-var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
         </script>
         <!-- InstanceEndEditable --></div><!--END content-->
         

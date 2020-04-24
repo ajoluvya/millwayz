@@ -102,14 +102,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Millwayz | Add item</title>
+<title>Millwayz::.Add items</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -131,13 +130,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
         </div>
         
         <div class="content"><!-- InstanceBeginEditable name="Content" -->
-          <h1>Add item</h1>
-          <p><a href="listItems.php">Item list</a></p>
+          <h1>Add item to list</h1>
           <form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
           <center>
             <table width="0" border="0" cellspacing="0" id="tbl_capture">
               <tr>
-                <th scope="row"><label for="item">Item description:</label></th>
+                <th scope="row"><label for="item">Item:</label></th>
                 <td><span id="sprytextfield1">
                   <input name="item" type="text" class="frm_fld" id="item" />
                   <br />

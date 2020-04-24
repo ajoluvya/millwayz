@@ -109,14 +109,13 @@ $totalRows_rsEditItem = mysql_num_rows($rsEditItem);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Millway | Edit Item</title>
+<title>Millwayz::..Edit Item</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -139,7 +138,6 @@ $totalRows_rsEditItem = mysql_num_rows($rsEditItem);
         
         <div class="content"><!-- InstanceBeginEditable name="Content" -->
           <h1>Edit Item</h1>
-          <p><a href="listItems.php">Back</a></p>
           <form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
           <center>
             <table width="0" border="0" cellspacing="0" id="tbl_capture">
@@ -179,7 +177,7 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "inte
         
       <div class="footer">&copy;millways 2012 - 2014</div><!--END footer-->
     
-    </div>
+</div>
 <p>&nbsp;</p>
 </body>
 <!-- InstanceEnd --></html>

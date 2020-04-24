@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 06, 2015 at 11:13 AM
+-- Generation Time: Aug 18, 2014 at 11:17 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -51,7 +51,7 @@ INSERT INTO `admin` (`staff_id`, `fname`, `lname`, `username`, `password`, `role
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_client` (
-  `client_ID` int(50) NOT NULL AUTO_INCREMENT,
+  `client_ID` varchar(50) NOT NULL,
   `millID` int(11) NOT NULL,
   `fname` varchar(100) NOT NULL,
   `lname` varchar(100) NOT NULL,
@@ -62,15 +62,7 @@ CREATE TABLE IF NOT EXISTS `tbl_client` (
   `datemodified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`client_ID`),
   KEY `millID` (`millID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `tbl_client`
---
-
-INSERT INTO `tbl_client` (`client_ID`, `millID`, `fname`, `lname`, `address1`, `address2`, `phoneNo`, `occupation`, `datemodified`) VALUES
-(1, 1, 'Andrew', 'Bigirwa', 'Kumi', 'Kumi', '+256784949300', 'Farmer', '2014-09-01 06:05:29'),
-(2, 1, 'Andrew', 'Cohen', 'Epaku House', 'West Wood', '+256782928030', 'Transporter', '2014-12-24 02:42:29');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -83,48 +75,11 @@ CREATE TABLE IF NOT EXISTS `tbl_discount` (
   `itemID` int(11) NOT NULL,
   `rate` int(11) NOT NULL DEFAULT '0',
   `millID` int(11) NOT NULL,
-  `st_weight` int(11) NOT NULL DEFAULT '0',
-  `end_weight` int(11) NOT NULL DEFAULT '0',
+  `st_weigth` int(11) NOT NULL DEFAULT '0',
+  `end_weigth` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`discountID`),
   KEY `itemID` (`itemID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `tbl_discount`
---
-
-INSERT INTO `tbl_discount` (`discountID`, `itemID`, `rate`, `millID`, `st_weight`, `end_weight`) VALUES
-(3, 1, 6, 1, 10, 50),
-(4, 1, 500, 1, 51, 100),
-(5, 2, 450, 1, 10, 120);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_frontdeskentry`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_frontdeskentry` (
-  `fdeID` int(11) NOT NULL AUTO_INCREMENT,
-  `saleID` int(11) NOT NULL,
-  `item` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
-  `discount` int(11) NOT NULL,
-  `modifiedBy` int(11) NOT NULL,
-  PRIMARY KEY (`fdeID`),
-  KEY `item` (`item`),
-  KEY `saleID` (`saleID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tbl_frontdeskentry`
---
-
-INSERT INTO `tbl_frontdeskentry` (`fdeID`, `saleID`, `item`, `weight`, `discount`, `modifiedBy`) VALUES
-(1, 2, 1, 78, 50, 1),
-(2, 3, 2, 45, 450, 1),
-(3, 3, 1, 635, 0, 1),
-(4, 4, 1, 500, 0, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -176,24 +131,14 @@ INSERT INTO `tbl_mill` (`millID`, `millName`, `district`, `modifiedby`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tbl_sales` (
   `saleID` int(11) NOT NULL AUTO_INCREMENT,
-  `clientNo` int(50) NOT NULL,
+  `clientNo` varchar(50) NOT NULL,
   `discount` int(11) NOT NULL,
   `salesDate` date NOT NULL,
-  `served` tinyint(1) NOT NULL DEFAULT '0',
   `millBranch` int(11) NOT NULL,
   `modifiedby` int(11) NOT NULL,
   PRIMARY KEY (`saleID`),
   KEY `clientNo` (`clientNo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tbl_sales`
---
-
-INSERT INTO `tbl_sales` (`saleID`, `clientNo`, `discount`, `salesDate`, `served`, `millBranch`, `modifiedby`) VALUES
-(2, 1, 0, '2014-09-01', 1, 1, 1),
-(3, 1, 0, '2014-09-06', 0, 1, 1),
-(4, 2, 0, '2014-12-24', 0, 1, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -207,20 +152,10 @@ CREATE TABLE IF NOT EXISTS `tbl_sold_item` (
   `itemNo` int(11) NOT NULL,
   `weight` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
-  `discount` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `itemNo` (`itemNo`),
   KEY `saleID` (`saleID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `tbl_sold_item`
---
-
-INSERT INTO `tbl_sold_item` (`ID`, `saleID`, `itemNo`, `weight`, `amount`, `discount`) VALUES
-(1, 2, 1, 78, 3900, 500),
-(2, 2, 1, 78, 3900, 50),
-(3, 2, 1, 78, 3900, 50);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -269,17 +204,10 @@ ALTER TABLE `tbl_discount`
   ADD CONSTRAINT `tbl_discount_ibfk_1` FOREIGN KEY (`itemID`) REFERENCES `tbl_item` (`itemID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_frontdeskentry`
---
-ALTER TABLE `tbl_frontdeskentry`
-  ADD CONSTRAINT `tbl_frontdeskentry_ibfk_1` FOREIGN KEY (`item`) REFERENCES `tbl_item` (`itemID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_frontdeskentry_ibfk_2` FOREIGN KEY (`saleID`) REFERENCES `tbl_sales` (`saleID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `tbl_sales`
 --
 ALTER TABLE `tbl_sales`
-  ADD CONSTRAINT `tbl_sales_ibfk_1` FOREIGN KEY (`clientNo`) REFERENCES `tbl_client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_sales_ibfk_1` FOREIGN KEY (`clientNo`) REFERENCES `tbl_client` (`client_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_sold_item`

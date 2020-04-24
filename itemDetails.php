@@ -82,12 +82,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbl_discount (itemID, rate, millID, st_weight, end_weight) VALUES (%s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbl_discount (itemID, rate, millID, st_weigth, end_weigth) VALUES (%s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['itemID'], "int"),
                        GetSQLValueString($_POST['rate'], "int"),
                        GetSQLValueString($_SESSION['millID'], "int"),
-                       GetSQLValueString($_POST['st_weight'], "int"),
-                       GetSQLValueString($_POST['end_weight'], "int"));
+                       GetSQLValueString($_POST['st_weigth'], "int"),
+                       GetSQLValueString($_POST['end_weigth'], "int"));
 
   mysql_select_db($database_millwayconn, $millwayconn);
   $Result1 = mysql_query($insertSQL, $millwayconn) or die(mysql_error());
@@ -100,11 +100,18 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   header(sprintf("Location: %s", $insertGoTo));
 }
 
+$hfg_rsDiscount = "0";
+if (isset($_GET['itemID'])) {
   $hfg_rsDiscount = $_GET['itemID'];
-  $yht_rsDiscount = $_SESSION['millID'];
+}
+$yht_rsDiscount = "0";
+if (isset($_SESSION['miilID'])) {
+  $yht_rsDiscount = $_SESSION['miilID'];
+}
 mysql_select_db($database_millwayconn, $millwayconn);
-$query_rsDiscount = sprintf("SELECT tbl_discount.rate, tbl_discount.st_weight, tbl_discount.end_weight, tbl_discount.discountID FROM tbl_discount WHERE tbl_discount.itemID=%s AND tbl_discount.millID=%s", GetSQLValueString($hfg_rsDiscount, "int"),GetSQLValueString($yht_rsDiscount, "int"));
+$query_rsDiscount = sprintf("SELECT tbl_discount.rate, tbl_discount.st_weigth, tbl_discount.end_weigth, tbl_discount.discountID FROM tbl_discount WHERE tbl_discount.itemID=%s AND tbl_discount.millID=%s", GetSQLValueString($hfg_rsDiscount, "int"),GetSQLValueString($yht_rsDiscount, "int"));
 $rsDiscount = mysql_query($query_rsDiscount, $millwayconn) or die(mysql_error());
+$row_rsDiscount = mysql_fetch_assoc($rsDiscount);
 $totalRows_rsDiscount = mysql_num_rows($rsDiscount);
 
 $ter_rsItem = "0";
@@ -126,17 +133,9 @@ $totalRows_rsItem = mysql_num_rows($rsItem);
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script type="text/javascript" src="SpryAssets/jquery.min.js"></script>
 <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-function checkSearch(delValue){
-				  var really=confirm("Are you sure about deleting this?\n"+delValue);
-				  return really;
-		}
-</script>
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -159,39 +158,37 @@ function checkSearch(delValue){
         
         <div class="content"><!-- InstanceBeginEditable name="Content" -->
           <h1>Item details</h1>
-          <p><a href="listItems.php">Main list of items</a></p>
-        <h2><?php echo $row_rsItem['itemName']; ?>, rate: Ushs    <?php echo $row_rsItem['charge']; ?> (per kg)</h2>
+        <h2><?php echo $row_rsItem['itemName']; ?> rate: Ushs    <?php echo $row_rsItem['charge']; ?> (per kg)</h2>
         <center>
         <form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
-        <table width="0" border="0" cellspacing="0" class="tbl_view">
+        <table width="0" border="0" cellspacing="0" id="tbl_view">
           <tr>
             <td scope="col">&nbsp;</td>
-            <th scope="col">START WEIGHT (kg)</th>
-            <th scope="col">END WEIGHT (kg)</th>
-            <th scope="col">DISCOUNT (Ushs)</th>
+            <th scope="col">STARTING WEIGHT</th>
+            <th scope="col">END WEIGHT</th>
+            <th scope="col">DISCOUNT</th>
             <td scope="col">&nbsp;</td>
           </tr>
-          <?php $cnt=1; while ($row_rsDiscount = mysql_fetch_assoc($rsDiscount)){ ?>
+          <?php do { ?>
           <tr>
             <td>&nbsp;</td>
-            <td><?php echo $row_rsDiscount['st_weight']; ?></td>
-            <td><?php $end_weight=$row_rsDiscount['end_weight']; echo $end_weight; ?></td>
+            <td><?php echo $row_rsDiscount['st_weigth']; ?></td>
+            <td><?php echo $row_rsDiscount['st_weigth']; ?></td>
             <td><?php echo $row_rsDiscount['rate']; ?></td>
-            <td><?php if($cnt++==$totalRows_rsDiscount) {?><a href="delete.php?itemID=<?php echo $_GET['itemID']; ?>&amp;discountID=<?php echo $row_rsDiscount['discountID']; ?>" onclick="return checkSearch('<?php echo $row_rsItem['itemName'].":  Start weight: ".$row_rsDiscount['st_weight']." , Ending weight: ".$row_rsDiscount['end_weight']; ?>');">Delete</a><?php }?></td>
+            <td>&nbsp;</td>
           </tr>
-            <?php } ?>
+            <?php } while ($row_rsDiscount = mysql_fetch_assoc($rsDiscount)); ?>
           <tr>
             <th>Add</th>
             <td><span id="sprytextfield2">
-            <input name="st_weight" type="text" id="st_weight" value="<?php echo isset($end_weight)?($end_weight+1)."\" readonly=\"readonly":10; ?>"/>
+            <input name="st_weigth" type="text" id="st_weigth" value="<?php echo isset($row_rsDiscount['end_weigth'])?($row_rsDiscount['end_weigth']+1):1; ?>" />
             <br />
-            <span class="textfieldRequiredMsg">This field is required.</span><span class="textfieldInvalidFormatMsg">Only numbers allowed in this field.</span><span class="textfieldMinValueMsg">Start weight must be greater than the previous end weight.</span></span></td>
-            <td>
+            <span class="textfieldRequiredMsg">This field is required.</span><span class="textfieldInvalidFormatMsg">Only numbers allowed in this field.</span><span class="textfieldMinValueMsg">The entered value is less than the previous end weight.</span><span class="textfieldMaxValueMsg">The entered value is greater than the maximum allowed.</span></span></td>
+            <td><span id="sprytextfield3">
               <input name="itemID" type="hidden" id="itemID" value="<?php echo $_GET['itemID']; ?>" />
-              <span id="sprytextfield3">
-            <input name="end_weight" type="text" id="end_weight" />
+            <input name="end_weigth" type="text" id="end_weigth" />
             <br />
-            <span class="textfieldRequiredMsg">This field is required.</span><span class="textfieldInvalidFormatMsg">Only numbers allowed in this field.</span><span class="textfieldMinValueMsg">End weight must be greater than the start weight.</span></span></td>
+            <span class="textfieldRequiredMsg">This field is required.</span><span class="textfieldInvalidFormatMsg">Only numbers allowed in this field.</span><span class="textfieldMinValueMsg">The entered value is less than the minimum required.</span><span class="textfieldMaxValueMsg">The entered value is greater than the maximum allowed.</span></span></td>
             <td><span id="sprytextfield1">
             <input name="rate" type="text" id="rate" />
             <br />
@@ -206,16 +203,8 @@ function checkSearch(delValue){
         </center>
         <p>&nbsp;</p>
         <script type="text/javascript">
-		var st_weight=<?php echo isset($end_weight)?($end_weight+2):11; ?>;
-var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "integer", {validateOn:["blur"], minValue:st_weight});
-$(document).ready(function(){
-	$("#st_weight").change(function(){
-		if($(this).val()!="")
-		st_weight=parseInt($(this).val())+1;
-		sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "integer", {validateOn:["blur"], minValue:st_weight});
-	});
-});
-var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "integer", {useCharacterMasking:true, minValue:<?php echo isset($row_rsDiscount['end_weight'])?($row_rsDiscount['end_weight']+1):10; ?>});
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "integer", {useCharacterMasking:true, minValue:<?php echo isset($row_rsDiscount['end_weigth'])?($row_rsDiscount['end_weigth']+1):1; ?>, maxValue:1000});
+var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "integer", {useCharacterMasking:true, minValue:0, maxValue:1000});
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {useCharacterMasking:true});
         </script>
         <!-- InstanceEndEditable --></div><!--END content-->

@@ -118,7 +118,7 @@ $totalRows_rsClient = mysql_num_rows($rsClient);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Millwayz | Edit Client Data</title>
+<title>Millwayz::..Edit Client Data</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
@@ -127,7 +127,6 @@ $totalRows_rsClient = mysql_num_rows($rsClient);
 <link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css" />
 <!-- InstanceEndEditable -->
 <link href="CSS/default.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="CSS/print.css"/>
 </head>
 
 <body>
@@ -150,7 +149,6 @@ $totalRows_rsClient = mysql_num_rows($rsClient);
         
         <div class="content"><!-- InstanceBeginEditable name="Content" -->
           <h1>Edit Client Data</h1>
-          <center>
           <form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
             <table width="0" border="0" cellspacing="0" id="tbl_capture">
               <tr>
@@ -211,7 +209,6 @@ $totalRows_rsClient = mysql_num_rows($rsClient);
             </table>
             <input type="hidden" name="MM_update" value="form1" />
           </form>
-          </center>
           <p>&nbsp;</p>
         <script type="text/javascript">
 var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");

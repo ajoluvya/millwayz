@@ -1,10 +1,9 @@
 <?php require_once('Connections/millwayconn.php'); ?>
-<?php require_once('Connections/millwayconn.php'); ?>
 <?php
 if (!isset($_SESSION)) {
   session_start();
 }
-$MM_authorizedUsers = "admin,Supervisor";
+$MM_authorizedUsers = "admin";
 $MM_donotCheckaccess = "false";
 
 // *** Restrict Access To Page: Grant or deny access to this page
@@ -100,21 +99,6 @@ if ((isset($_GET['clientID'])) && ($_GET['clientID'] != "")) {
   $Result1 = mysql_query($deleteSQL, $millwayconn) or die(mysql_error());
 
   $deleteGoTo = "clients.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
-    $deleteGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  header(sprintf("Location: %s", $deleteGoTo));
-}
-
-if ((isset($_GET['discountID'])) && ($_GET['discountID'] != "") && (isset($_GET['itemID']))) {
-  $deleteSQL = sprintf("DELETE FROM tbl_discount WHERE discountID=%s",
-                       GetSQLValueString($_GET['discountID'], "int"));
-
-  mysql_select_db($database_millwayconn, $millwayconn);
-  $Result1 = mysql_query($deleteSQL, $millwayconn) or die(mysql_error());
-
-  $deleteGoTo = "itemDetails.php";
   if (isset($_SERVER['QUERY_STRING'])) {
     $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
     $deleteGoTo .= $_SERVER['QUERY_STRING'];
